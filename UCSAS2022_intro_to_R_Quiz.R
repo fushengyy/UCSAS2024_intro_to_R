@@ -34,7 +34,7 @@ solve(B)
 
 # Quiz 4 Solution
 my_function <- function(x, y) {
-  return(sqrt(x^y))
+  return(y^x)
 }
 my_function(4,5)
 
@@ -49,7 +49,6 @@ if (x %% 2 == 0) {
 }
 
 # Quiz 6 Solution
-install.packages("Lahman")
 library(Lahman)
 data("Batting", package = "Lahman")
 

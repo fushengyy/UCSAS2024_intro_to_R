@@ -46,12 +46,10 @@ integer_variable <- 186L
 integer_variable
 class(integer_variable)
 
-
 ### Complex
 complex_value <- 3 + 2i
 complex_value
 class(complex_value)
-
 
 ### Charactor
 my_char <- 'A'
@@ -149,8 +147,6 @@ my_function <- function(x) {
 }
 my_function(5)
 
-
-
 ## Loop
 for (i in 1:5) {
   print(i)
@@ -225,7 +221,7 @@ Batting$CS_SO <- Batting$CS + Batting$SO # Create a new variable "CS\_SO" by
                                          # adding up values of variables "CS" 
                                          # and "SO".
 head(Batting)
-Batting[, c("CS", "SO", "CS_SO")] # Display only "CS", "SO", and "CS\_SO".
+Batting[, c("CS", "SO", "CS_SO")] # Display only "CS", "SO", and "CS_SO".
 
 
 ## Data Manipulation using dplyr
@@ -240,7 +236,7 @@ salaries <- Salaries %>%
 head(salaries)
 
 batting <- left_join(Batting, salaries, 
-                     by =c("playerID", "yearID", "teamID"))
+                     by = c("playerID", "yearID", "teamID"))
 head(batting)
 
 batting <- batting %>% arrange(playerID, yearID)
