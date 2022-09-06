@@ -66,5 +66,3 @@ head(player25)
 player25_ordered <- player25 %>%
   arrange(desc(BB))
 head(player25_ordered)
-
-# Quiz 8 Solution
