@@ -118,12 +118,6 @@ A
 B <- array(1:12, dim = c(2,3,2))
 B
 
-### Factor
-fac = factor(c("Male", "Female", "Male",
-               "Male", "Female", "Male", "Female"))
-fac
-levels(fac)
-unique(fac)
 
 ## Function
 my_function <- function() { # create a function with the name my_function
