@@ -1,12 +1,13 @@
 ---
 title: "Introduction to R"
-subtitle: "UCSAS 2022"
-author: Fusheng Yang, Department of Statistics, UConn
-date: ""
-output: 
+author: "Fusheng Yang, Department of Statistics, UConn"
+date: ''
+output:
   ioslides_presentation:
     css: style.css
-    widescreen: true
+    widescreen: yes
+  beamer_presentation: default
+subtitle: UCSAS 2022
 ---
 
 ```{r setup, include=FALSE}
@@ -223,10 +224,10 @@ function_name <- function(arg_1, arg_2, ...) {
 ## Function (cont.)
 
 -   Components:
-    -   Function Name: the actual name of the function. It is stored in R environment as an object with this name.
-    -   Arguments: a placeholder. When a function is invoked, you pass a value to the argument. Arguments are optional; that is, a function may contain no arguments. Also arguments can have default values.
-    -   Function Body: contains a collection of statements that defines what the function does.
-    -   Return Value: the last expression in the function body to be evaluated.
+    -   **Function Name**: the actual name of the function. It is stored in R environment as an object with this name.
+    -   **Arguments**: a placeholder. When a function is invoked, you pass a value to the argument. Arguments are optional; that is, a function may contain no arguments. Also arguments can have default values.
+    -   **Function Body**: contains a collection of statements that defines what the function does.
+    -   **Return Value**: the last expression in the function body to be evaluated.
 
 
 ## Quiz 4
@@ -243,9 +244,9 @@ We use loop to deal with repeated tasks.
 
 ## Condition
 
--   **if** Statement: The `if` statement takes a condition; if the condition evaluates to `TRUE`, the R code associated with the *if* statement is executed.
--   **if ... else ...** Statement: The code associated with the *else* statement gets executed whenever the condition of the *if* condition is `FALSE`.
--   **if ... else if ... else** Statement: The *else if* condition is checked if the first condition is not satisfied. If the second condition is then met, then the code inside it is executed.
+-   **if**: The *if* statement takes a condition; if the condition evaluates to `TRUE`, the R code associated with the *if* statement is executed.
+-   **if ... else ...**: The code associated with the *else* statement gets executed whenever the condition of the *if* condition is `FALSE`.
+-   **if ... else if ... else**: The *else if* condition is checked if the first condition is not satisfied. If the second condition is then met, then the code inside it is executed.
 
 ## Quiz 5
 
@@ -257,14 +258,12 @@ Using the conditional statement, check whether -9 is divisible by 2 or by 3.
 
 -   Read data syntax:
 ```{r echo = TRUE, eval = FALSE}
-read.table(file = "location_of_file", 
-           header = TRUE)
+read.table(file = "location_of_file", header = TRUE)
 ```
 
 -   Write/Save data syntax:
 ```{r echo = TRUE, eval = FALSE}
-write.table(dataName, 
-            file = "location_of_file")
+write.table(dataName, file = "location_of_file")
 ```
 
 -   Some useful functions:
@@ -289,8 +288,8 @@ library("package_name")
 install.packages("Lahman")
 library(Lahman)
 ```
-
-"Lahman" package contains historical season-level baseball data for Major League Baseball going back to 1871.
+    -   "Lahman" package contains historical season-level baseball data for Major League 
+    Baseball going back to 1871.
 
 
 
@@ -309,13 +308,13 @@ data("dataName", package = "package_name")
 -   Search and Read Datasets in "Lahman"
 ```{r echo = TRUE, eval = FALSE}
 data(package = "Lahman")
-data("Batting", package = "Lahman") # Read "Batting" in "Lahman"
+data("Batting", package = "Lahman")
 ```
 
 
-## Dataframe
+## Data Manipulation using Base R
 
-`str(Batting)`: : Learn more about variables. (For more information about the dataset, check [here](https://rdrr.io/cran/Lahman/man/Batting.html).
+`str(Batting)`: : Learn more about variables. (For more information about the dataset, check [here](https://rdrr.io/cran/Lahman/man/Batting.html).)
 
 `names(Batting)`: Names of variables in the dataset.
 
@@ -325,7 +324,7 @@ data("Batting", package = "Lahman") # Read "Batting" in "Lahman"
 
 `Batting[1:4,]`: Display the first 4 rows of the dataset.
 
-## Dataframe (cont.)
+## Data Manipulation using Base R (cont.)
 
 `Batting$playerID`: Display values of the variable "playerID".
 
@@ -337,12 +336,13 @@ data("Batting", package = "Lahman") # Read "Batting" in "Lahman"
 
 `Batting[, c("CS", "SO", "CS_SO")]`: Display only "CS", "SO", and "CS\_SO" of the updated dataset.
 
+More base R options check [here](https://github.com/rstudio/cheatsheets/blob/main/base-r.pdf).
 
 ## Quiz 6
 
 Using dataset "Batting"
 
--   Display data from year 1900 only;
+-   Display data from year 1900 only.
 -   Find total number of players and teams played through out all games in the dataset.
 -   Create a new dataframe "Batting1950" for year 1950 only.
 
@@ -375,13 +375,14 @@ salaries <- Salaries %>% select(playerID, yearID, teamID, salary)
 ```{r echo = TRUE, eval = FALSE}
 batting <- left_join(Batting, salaries, by = c("playerID", "yearID", "teamID"))
 ```
-
-`left\_join(a, b, by = "x1")`: Join matching rows from b to a. More join options check [here](https://www.rstudio.com/wp-content\%2Fuploads\%2F2015\%2F02\%2Fdata-wrangling-cheatsheet.pdf\%2F).
+    -   `left_join(a, b, by = "x1")`: Join matching rows from b to a.
 
 -   Rearrange orders of the dataset by multiple variables:
 ```{r echo = TRUE, eval = FALSE}
 batting <- batting %>% arrange(playerID, yearID)
 ```
+
+More dplyr options check [here](https://github.com/rstudio/cheatsheets/blob/main/data-transformation.pdf).
 
 ## Quiz 7
 
@@ -389,6 +390,19 @@ batting <- batting %>% arrange(playerID, yearID)
 
 -   Rearrange these players based on base on balls in a descending order and save to a new dataframe "player25\_ordered".
 
+## Visualization Using Base R
+
+-   Build data we want to use:
+```{r echo = TRUE, eval = FALSE}
+year_data <- batting %>% filter(yearID == "2005")
+```
+
+-   Scatterplot of Homeruns vs. Doubles in 2005:
+```{r echo = TRUE, eval = FALSE}
+plot(x = year_data$X2B, y = year_data$HR,
+     xlab = "Doubles", ylab = "Homeruns",
+     main = "Scatterplot: Homeruns vs. Doubles")
+```
 
 ## Visualization Using ggplot2
 
@@ -398,11 +412,6 @@ batting <- batting %>% arrange(playerID, yearID)
 ```{r echo =TRUE, eval = FALSE}
 install.packages("ggplot2")
 library(ggplot2)
-```
-
--   Build data we want to use:
-```{r echo = TRUE, eval = FALSE}
-year_data <- batting %>% filter(yearID == "2005")
 ```
 
 
@@ -430,6 +439,10 @@ ggplot(year_data, aes(x = X2B, y = HR, color = lgID)) +
 
 ## Visualization Using ggplot2 (cont.)
 
+```{r out.width='50%', out.extra='style="float:right; padding:10px"'}
+knitr::include_graphics("egs.png")
+```
+
 Useful plots:
 
 -   barplot: `geom_bar()` 
@@ -437,13 +450,10 @@ Useful plots:
 -   boxplot: `geom_boxplot()`
 -   line plot: `geom_line()`
 
-![](./egs.png){#id .class width="35%" height="35%"}
+More ggplot2 options check [here](https://github.com/rstudio/cheatsheets/blob/main/data-visualization-2.1.pdf).
 
-```{r echo = TRUE, eval = FALSE}
-data("dataName", package = "package_name")
-```
+R graph gallery check [here](https://r-graph-gallery.com/).
 
--   **Quiz:** Read "Batting" data from "Lahman" package.
 
 ## Useful References
 

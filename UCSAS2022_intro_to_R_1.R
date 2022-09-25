@@ -201,7 +201,7 @@ library(Lahman)
 data(package = "Lahman")
 data("Batting", package = "Lahman")
 
-## Dataframe
+## Data Manipulation using Base R
 str(Batting) # Learn more about variables.
 names(Batting) # Names of the dataset
 head(Batting) # Display the first few rows of the dataset.
@@ -229,31 +229,33 @@ salaries <- Salaries %>%
   select(playerID, yearID, teamID, salary) # remove league info from the dataset
 head(salaries)
 
-batting <- left_join(Batting, salaries, 
-                     by = c("playerID", "yearID", "teamID"))
+batting <- left_join(Batting, salaries, by = c("playerID", "yearID", "teamID"))
 head(batting)
 
 batting <- batting %>% arrange(playerID, yearID)
 head(batting)
 
 
+## Visualization Using Base R
+
+year_data <- batting %>% filter(yearID == "2005")
+head(year_data)
+
+plot(x = year_data$X2B, y = year_data$HR,
+     xlab = "Doubles", ylab = "Homeruns",
+     main = "Scatterplot: Homeruns vs. Doubles")
+
 ## Visualization Using ggplot2
 install.packages("ggplot2")
 library(ggplot2)
-
-
-year_data <- batting %>% 
-  filter(yearID == "2005")
 
 ggplot(year_data, aes(x = X2B, y = HR)) +
   geom_point()
 
 ggplot(year_data, aes(x = X2B, y = HR)) +
   geom_point() +
-  labs(x = "Doubles", y = "Homeruns", 
-       title = "Scatterplot: Homeruns vs. Doubles")
+  labs(x = "Doubles", y = "Homeruns", title = "Scatterplot: Homeruns vs. Doubles")
 
 ggplot(year_data, aes(x = X2B, y = HR, color = lgID)) +
   geom_point() +
-  labs(x = "Doubles", y = "Homeruns", 
-       title = "Scatterplot: Homeruns vs. Doubles")
+  labs(x = "Doubles", y = "Homeruns", title = "Scatterplot: Homeruns vs. Doubles")
