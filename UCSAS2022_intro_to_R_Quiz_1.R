@@ -40,7 +40,7 @@ my_function(4,5)
 
 # Quiz 5 Solution
 x <- -9
-if (x %% 2 == 0) {
+if (x %% 2 == 0) { # '%%' indicates x mod y (“x modulo y”)
   print("divisible by 2")
 } else if (x %% 3 == 0) {
   print("divisible by 3")
@@ -59,10 +59,8 @@ Batting1950 <- Batting[Batting$yearID == "1950", ] # new dataframe for 1950
 Batting1950
 
 # Quiz 7 Solution
-player25 <- Batting %>% 
-  filter(BB > 25 & yearID < 1900)
+player25 <- Batting %>% filter(BB > 25 & yearID < 1900)
 head(player25)
 
-player25_ordered <- player25 %>%
-  arrange(desc(BB))
+player25_ordered <- player25 %>% arrange(desc(BB))
 head(player25_ordered)

@@ -77,7 +77,7 @@ typeof(Y)
 ### List
 empId = c(1, 2, 3, 4) # 1st attribute: employee IDs
 empName = c("Debi", "Sandeep", "Subham", "Shiba") # 2nd attribute: employee names
-numberOfEmp = 4 ## 3rd attribute: number of employees
+numberOfEmp = 4 # 3rd attribute: number of employees
 empList = list(empId, empName, numberOfEmp) # make a list
 empList
 typeof(empList)
@@ -112,10 +112,12 @@ dim(A) # check dimension of A
 A = array(
   c(1, 2, 3, 4, 5, 6, 7, 8), # Taking sequence of elements
   dim = c(2, 2, 2) # Creating two rectangular matrices 
-                   # each with two rows and two columns                      
+                   # each with two rows and two columns 
+                   # first 2: row; second 2: column; third 2: number of matrices
 )
 A
-B <- array(1:12, dim = c(2,3,2))
+B <- array(1:12, dim = c(2,3,2)) # Creating two rectangular matrices
+                                 # each with two rows and three columns
 B
 
 
@@ -130,11 +132,12 @@ my_function <- function(fname, lname) {
 }
 my_function("Peter", "Griffin")
 
-my_function <- function(country = "Norway") {
+my_function <- function(country = "Norway") { # set default argument to 
+                                              # country = "Norway"
   paste("I am from", country)
 }
-my_function() # will get the default value, which is Norway
-my_function("USA")
+my_function() # will get the default value, which is "Norway"
+my_function("USA") # replace the default value by "USA"
 
 my_function <- function(x) {
   return (5 * x)
@@ -197,12 +200,14 @@ for (i in 1:5) { # combime loop and condition
 install.packages("Lahman")
 library(Lahman)
 
+
 ## Search and Read Datasets in a Package
 data(package = "Lahman")
 data("Batting", package = "Lahman")
 
+
 ## Data Manipulation using Base R
-str(Batting) # Learn more about variables.
+str(Batting) # Check variables.
 names(Batting) # Names of the dataset
 head(Batting) # Display the first few rows of the dataset.
 Batting[, 1:4] # Display the first 4 columns of the dataset.
@@ -211,7 +216,7 @@ Batting$playerID # Display values of the variable "playerID".
 Batting[, c("playerID")]
 Batting[1:10, c("playerID", "yearID")] # Display the first 10 elements of 
                                        # the variables "playerID" and "yearID".
-Batting$CS_SO <- Batting$CS + Batting$SO # Create a new variable "CS\_SO" by 
+Batting$CS_SO <- Batting$CS + Batting$SO # Create a new variable "CS_SO" by 
                                          # adding up values of variables "CS" 
                                          # and "SO".
 head(Batting)
@@ -230,9 +235,11 @@ salaries <- Salaries %>%
 head(salaries)
 
 batting <- left_join(Batting, salaries, by = c("playerID", "yearID", "teamID"))
+                  # Join salary info and batting info together
 head(batting)
 
 batting <- batting %>% arrange(playerID, yearID)
+                  # Rearrange orders of the dataset by multiple variables
 head(batting)
 
 
@@ -250,12 +257,14 @@ install.packages("ggplot2")
 library(ggplot2)
 
 ggplot(year_data, aes(x = X2B, y = HR)) +
-  geom_point()
+  geom_point() # Scatterplot of Homeruns vs. Doubles in 2005
 
 ggplot(year_data, aes(x = X2B, y = HR)) +
   geom_point() +
   labs(x = "Doubles", y = "Homeruns", title = "Scatterplot: Homeruns vs. Doubles")
+               # Change label names and add title
 
 ggplot(year_data, aes(x = X2B, y = HR, color = lgID)) +
   geom_point() +
   labs(x = "Doubles", y = "Homeruns", title = "Scatterplot: Homeruns vs. Doubles")
+               # Group by League (lgID)

@@ -18,7 +18,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 -   This workshop is a part of [UConn Sports Analytics Symposium (UCSAS) 2022](https://statds.org/events/ucsas2022/index.html).
 -   This workshop aims to give a quick tour of R.
--   All source codes of related documents of this workshop are in the GitHub repository: (<https://github.com/fushengyy/UCSAS2022_intro_to_R>).
+-   All source codes of related documents of this workshop are in the GitHub repository: <https://github.com/fushengyy/UCSAS2022_intro_to_R>.
 
 ## About Me
 
@@ -41,7 +41,7 @@ knitr::opts_chunk$set(echo = FALSE)
 -   R Data Structure
 -   Read and Write Data
 -   Data Management
--   Brief Overview of "dplyr" and "ggplot2" Package
+-   Brief Overview of "dplyr" and "ggplot2" Packages
 
 ## What is R?
 
@@ -314,7 +314,7 @@ data("Batting", package = "Lahman")
 
 ## Data Manipulation using Base R
 
-`str(Batting)`: : Learn more about variables. (For more information about the dataset, check [here](https://rdrr.io/cran/Lahman/man/Batting.html).)
+`str(Batting)`: : Check variables. (For more information about the dataset, check [here](https://rdrr.io/cran/Lahman/man/Batting.html).)
 
 `names(Batting)`: Names of variables in the dataset.
 
@@ -392,7 +392,7 @@ More dplyr options check [here](https://github.com/rstudio/cheatsheets/blob/main
 
 ## Visualization Using Base R
 
--   Build data we want to use:
+-   Prepare the data we want to use:
 ```{r echo = TRUE, eval = FALSE}
 year_data <- batting %>% filter(yearID == "2005")
 ```
