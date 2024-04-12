@@ -26,19 +26,6 @@ repository: <https://github.com/fushengyy/UCSAS2024_intro_to_R>.
 
 
 
-## About Me
-
--   Fifth-year Ph.D. Student in Statistcs at UConn.
-
--   **Research Interests:**
-    -   Time series analysis.
-    -   Climate change study.
-    
--   **Future goals:**
-    -   Contribute to the broader field of environmental statistics.
-
-
-
 ## Prerequisites
 
 -   A laptop with R/RStudio installed
