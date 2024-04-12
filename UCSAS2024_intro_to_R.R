@@ -305,7 +305,7 @@ boxplot(group1, group2, main = "Box Plot", names = c("Group 1", "Group 2"),
 
 
 
-## Visualization Using ggplot2 (cont.)
+## Visualization Using ggplot2
 
 install.packages("ggplot2")
 library(ggplot2)
